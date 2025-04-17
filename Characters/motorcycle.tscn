@@ -1,0 +1,36 @@
+[gd_scene load_steps=7 format=3 uid="uid://d2p34rhwypfx8"]
+
+[ext_resource type="Script" path="res://Scripts/Characters/motorcycle.gd" id="1_4w150"]
+[ext_resource type="PackedScene" uid="uid://c3ef1jqc6y4xk" path="res://Assets/random_sprite2d.tscn" id="2_k2rlr"]
+[ext_resource type="Texture2D" uid="uid://c2ueo1ur4xxwk" path="res://Assets/Enemies/AllMotorcyles.PNG" id="3_jyjjr"]
+[ext_resource type="Script" path="res://Scripts/Components/health_component.gd" id="3_uuq5a"]
+[ext_resource type="Script" path="res://Characters/health_bar.gd" id="4_qd37v"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lunee"]
+radius = 23.0
+height = 144.0
+
+[node name="Motorcycle" type="CharacterBody2D"]
+collision_layer = 8
+script = ExtResource("1_4w150")
+
+[node name="RandomSprite2D" parent="." instance=ExtResource("2_k2rlr")]
+texture = ExtResource("3_jyjjr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_lunee")
+
+[node name="HealthComponent" type="Node2D" parent="."]
+script = ExtResource("3_uuq5a")
+MAX_HEALTH = 1.0
+health = 1.0
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+modulate = Color(1, 0, 0, 1)
+offset_left = -24.0
+offset_top = -80.0
+offset_right = 19.0
+offset_bottom = -74.0
+scale = Vector2(1.10927, 0.503114)
+show_percentage = false
+script = ExtResource("4_qd37v")

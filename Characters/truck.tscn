@@ -1,0 +1,48 @@
+[gd_scene load_steps=8 format=3 uid="uid://vma2yqcqyniy"]
+
+[ext_resource type="Script" path="res://Scripts/Characters/truck.gd" id="1_08m2g"]
+[ext_resource type="Texture2D" uid="uid://cq5id7n2lalm0" path="res://Assets/Truck/CompleteNoWings.PNG" id="2_67gje"]
+[ext_resource type="PackedScene" uid="uid://dlelrauqapipc" path="res://Characters/wings.tscn" id="3_of45c"]
+[ext_resource type="AudioStream" uid="uid://c2dw4y2pex7bj" path="res://Assets/Audio/chargeUp.wav" id="4_pr373"]
+[ext_resource type="AudioStream" uid="uid://sw4y1l562auk" path="res://Assets/Audio/shoot.wav" id="5_obydj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uant1"]
+size = Vector2(50, 112)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_37l76"]
+size = Vector2(50, 112)
+
+[node name="Truck" type="CharacterBody2D"]
+collision_mask = 29
+motion_mode = 1
+script = ExtResource("1_08m2g")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.426, 0.426)
+texture = ExtResource("2_67gje")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 12)
+shape = SubResource("RectangleShape2D_uant1")
+
+[node name="LeftWing" parent="." instance=ExtResource("3_of45c")]
+position = Vector2(0, -48)
+scale = Vector2(-1, 1)
+is_left_wing = true
+
+[node name="RightWing" parent="." instance=ExtResource("3_of45c")]
+position = Vector2(0, -48)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 12)
+shape = SubResource("RectangleShape2D_37l76")
+
+[node name="ChargeSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_pr373")
+volume_db = 5.0
+
+[node name="ShootSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_obydj")
+volume_db = 5.0

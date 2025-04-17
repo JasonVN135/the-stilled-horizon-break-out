@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://dwrrvdbxv267v"]
+
+[ext_resource type="Script" path="res://Scripts/Characters/ball.gd" id="1_m3gya"]
+[ext_resource type="Texture2D" uid="uid://ydjgdwu25qqr" path="res://Assets/Ball/Ball.PNG" id="2_6a02c"]
+[ext_resource type="AudioStream" uid="uid://bhcsg1002qeuu" path="res://Assets/Audio/enemyHit.mp3" id="3_o0p2s"]
+[ext_resource type="AudioStream" uid="uid://db52655cbof1l" path="res://Assets/Audio/ballCollide.wav" id="4_o4rtw"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_0j8dp"]
+bounce = 0.75
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c5ae1"]
+radius = 34.0
+
+[node name="Ball" type="RigidBody2D"]
+collision_layer = 4
+collision_mask = 63
+mass = 0.5
+physics_material_override = SubResource("PhysicsMaterial_0j8dp")
+can_sleep = false
+freeze = true
+script = ExtResource("1_m3gya")
+base_texture = ExtResource("2_6a02c")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_6a02c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CircleShape2D_c5ae1")
+
+[node name="EnemyHitSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_o0p2s")
+
+[node name="CollisionSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_o4rtw")
+volume_db = 3.0
+pitch_scale = 1.68

@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://dvemmb1cxxfby"]
+
+[ext_resource type="Script" path="res://completion_bar.gd" id="1_ik5qe"]
+[ext_resource type="Texture2D" uid="uid://daj352e7gwfod" path="res://Assets/Background/ProgressBarWOutline.PNG" id="2_68ks4"]
+[ext_resource type="Texture2D" uid="uid://cxqh0soks54pk" path="res://Assets/Background/TruckProgressBar.PNG" id="3_qct2f"]
+
+[node name="CompletionBar" type="Node2D"]
+script = ExtResource("1_ik5qe")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_68ks4")
+
+[node name="Indicator" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Indicator"]
+texture = ExtResource("3_qct2f")

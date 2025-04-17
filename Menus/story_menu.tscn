@@ -1,0 +1,98 @@
+[gd_scene load_steps=9 format=3 uid="uid://cnb0ub2t1lh42"]
+
+[ext_resource type="Script" path="res://Menus/story_menu.gd" id="1_yrkv0"]
+[ext_resource type="Texture2D" uid="uid://88k6ia0bfj1t" path="res://Assets/Background/PinballBackground.PNG" id="2_tm0o3"]
+[ext_resource type="FontFile" uid="uid://m1k5qjooih3p" path="res://Assets/Xirod.otf" id="3_tj38e"]
+[ext_resource type="StyleBox" path="res://Assets/ButtonResources/focus.tres" id="4_eub1w"]
+[ext_resource type="StyleBox" path="res://Assets/ButtonResources/hover_pressed.tres" id="5_3lpcr"]
+[ext_resource type="StyleBox" path="res://Assets/ButtonResources/hover.tres" id="6_046n4"]
+[ext_resource type="StyleBox" path="res://Assets/ButtonResources/pressed.tres" id="7_1acj2"]
+[ext_resource type="StyleBox" path="res://Assets/ButtonResources/normal.tres" id="8_ka4iq"]
+
+[node name="StoryMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yrkv0")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_tm0o3")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = 48.0
+offset_right = 20.0
+offset_bottom = 71.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("3_tj38e")
+theme_override_font_sizes/font_size = 48
+text = "Story So Far"
+
+[node name="Description" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -18.5
+offset_right = 20.0
+offset_bottom = 18.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_tj38e")
+theme_override_font_sizes/font_size = 30
+text = "Jace, Frank, and Aria escape Draven and his goons
+and take the parts to repair the machine. As they
+Leave the apartment, they hear motorcycles reving up.
+
+Draven and his goons are chasing after you and they're 
+catching up! Luckily, frank has a solution. Frank activates
+the truck's defense wings and Titan Sphere.
+
+It's your job to control the wings as you defend yourself
+from draven and the oncoming goons."
+horizontal_alignment = 1
+
+[node name="ReturnButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 64.0
+offset_top = -120.0
+offset_right = 320.0
+offset_bottom = -48.0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("3_tj38e")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = ExtResource("4_eub1w")
+theme_override_styles/hover_pressed_mirrored = ExtResource("5_3lpcr")
+theme_override_styles/hover = ExtResource("6_046n4")
+theme_override_styles/pressed = ExtResource("7_1acj2")
+theme_override_styles/normal = ExtResource("8_ka4iq")
+text = "Return"
+
+[connection signal="pressed" from="ReturnButton" to="." method="_on_return_button_pressed"]

@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://cloh7dkg1d32f"]
+
+[ext_resource type="Script" path="res://bomb_power_up.gd" id="1_aq0rv"]
+[ext_resource type="Texture2D" uid="uid://c0w54d33xv33y" path="res://Assets/Ball/BallWithBomb.PNG" id="2_sn4be"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oa0qe"]
+radius = 128.25
+
+[node name="BombPowerUp" type="Node2D"]
+script = ExtResource("1_aq0rv")
+ball_texture = ExtResource("2_sn4be")
+
+[node name="BlastRadius" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BlastRadius"]
+shape = SubResource("CircleShape2D_oa0qe")

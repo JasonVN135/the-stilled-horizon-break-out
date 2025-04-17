@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://bobj67b0vedi8"]
+
+[ext_resource type="Script" path="res://split_power_up.gd" id="1_74f0t"]
+[ext_resource type="Texture2D" uid="uid://bl87mjftu8ns0" path="res://Assets/Ball/SplittingBall.PNG" id="2_imwqd"]
+
+[node name="SplitPowerUp" type="Node2D"]
+script = ExtResource("1_74f0t")
+ball_texture = ExtResource("2_imwqd")

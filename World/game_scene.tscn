@@ -1,0 +1,155 @@
+[gd_scene load_steps=22 format=3 uid="uid://dfbooo0ioj07a"]
+
+[ext_resource type="Script" path="res://World/game_scene.gd" id="1_im2pb"]
+[ext_resource type="PackedScene" uid="uid://vma2yqcqyniy" path="res://Characters/truck.tscn" id="1_vffmt"]
+[ext_resource type="Texture2D" uid="uid://cs2j761qt51j6" path="res://icon.svg" id="2_onlth"]
+[ext_resource type="PackedScene" uid="uid://dwrrvdbxv267v" path="res://Characters/ball.tscn" id="3_djg2y"]
+[ext_resource type="PackedScene" uid="uid://g5q431u020c4" path="res://World/spawner.tscn" id="6_2oe6n"]
+[ext_resource type="Texture2D" uid="uid://88k6ia0bfj1t" path="res://Assets/Background/PinballBackground.PNG" id="6_briti"]
+[ext_resource type="PackedScene" uid="uid://dvemmb1cxxfby" path="res://UI/completion_bar.tscn" id="7_tvtd0"]
+[ext_resource type="PackedScene" uid="uid://dwplx88bkrbsx" path="res://Menus/tutorial_page.tscn" id="8_ko4ev"]
+[ext_resource type="PackedScene" uid="uid://cx3c7pp5w45i0" path="res://power_up_icon.tscn" id="8_rj1px"]
+[ext_resource type="FontFile" uid="uid://m1k5qjooih3p" path="res://Assets/Xirod.otf" id="9_x6sr5"]
+[ext_resource type="Script" path="res://World/power_up_manager.gd" id="10_42a87"]
+[ext_resource type="Script" path="res://World/score.gd" id="10_hr8wn"]
+[ext_resource type="AudioStream" uid="uid://cyb5ckhbv588v" path="res://Assets/Audio/Karl Casey - Race Against Sunset.mp3" id="11_i2xwj"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_48s3e"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6idbv"]
+size = Vector2(160, 1080)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_m2u7j"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p4wyq"]
+size = Vector2(160, 1080)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_wp2xv"]
+rough = true
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u8keb"]
+size = Vector2(1920, 160)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7khse"]
+size = Vector2(1000, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_udyh4"]
+size = Vector2(1000, 40)
+
+[node name="GameScene" type="Node2D"]
+position = Vector2(960, 540)
+script = ExtResource("1_im2pb")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Background1" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(960, 540)
+texture = ExtResource("6_briti")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Boundaries" type="Node2D" parent="."]
+
+[node name="LeftBoundary" type="StaticBody2D" parent="Boundaries"]
+position = Vector2(-400, 0)
+collision_layer = 8
+collision_mask = 0
+physics_material_override = SubResource("PhysicsMaterial_48s3e")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundaries/LeftBoundary"]
+shape = SubResource("RectangleShape2D_6idbv")
+
+[node name="RightBoundary" type="StaticBody2D" parent="Boundaries"]
+position = Vector2(400, 0)
+collision_layer = 8
+collision_mask = 0
+physics_material_override = SubResource("PhysicsMaterial_m2u7j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundaries/RightBoundary"]
+shape = SubResource("RectangleShape2D_p4wyq")
+
+[node name="Icon" type="Sprite2D" parent="Boundaries/RightBoundary"]
+visible = false
+position = Vector2(-24, 464)
+texture = ExtResource("2_onlth")
+
+[node name="UpperBoundary" type="StaticBody2D" parent="Boundaries"]
+position = Vector2(0, -620)
+collision_layer = 16
+collision_mask = 0
+physics_material_override = SubResource("PhysicsMaterial_wp2xv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundaries/UpperBoundary"]
+shape = SubResource("RectangleShape2D_u8keb")
+
+[node name="GameOver" type="Area2D" parent="Boundaries"]
+position = Vector2(0, 400)
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundaries/GameOver"]
+shape = SubResource("RectangleShape2D_7khse")
+
+[node name="BallDespawn" type="Area2D" parent="Boundaries"]
+position = Vector2(0, 600)
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundaries/BallDespawn"]
+shape = SubResource("RectangleShape2D_udyh4")
+
+[node name="Truck" parent="." instance=ExtResource("1_vffmt")]
+position = Vector2(0, 423)
+
+[node name="Ball" parent="." instance=ExtResource("3_djg2y")]
+position = Vector2(0, 332)
+gravity_scale = 1.25
+contact_monitor = true
+max_contacts_reported = 1
+
+[node name="Spawner" parent="." instance=ExtResource("6_2oe6n")]
+position = Vector2(-1, -668)
+
+[node name="DifficultyTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="CompletionBar" parent="UI" instance=ExtResource("7_tvtd0")]
+position = Vector2(960, 1024)
+scale = Vector2(0.6, 0.6)
+
+[node name="PowerUpIcon" parent="UI" instance=ExtResource("8_rj1px")]
+offset_left = 72.0
+offset_top = 64.0
+offset_right = 244.0
+offset_bottom = 236.0
+
+[node name="Score" type="Label" parent="UI"]
+offset_left = 64.0
+offset_right = 301.0
+offset_bottom = 49.0
+theme_override_fonts/font = ExtResource("9_x6sr5")
+theme_override_font_sizes/font_size = 50
+text = "Score: "
+script = ExtResource("10_hr8wn")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TutorialPage" parent="CanvasLayer" instance=ExtResource("8_ko4ev")]
+
+[node name="PowerUpManager" type="Node2D" parent="."]
+script = ExtResource("10_42a87")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_i2xwj")
+volume_db = -8.0
+autoplay = true
+
+[connection signal="body_entered" from="Boundaries/GameOver" to="." method="_on_game_over_body_entered"]
+[connection signal="body_entered" from="Boundaries/BallDespawn" to="." method="_on_ball_despawn_body_entered"]
+[connection signal="body_entered" from="Ball" to="Ball" method="_on_body_entered"]
+[connection signal="timeout" from="DifficultyTimer" to="." method="_on_difficulty_timer_timeout"]

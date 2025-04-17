@@ -1,0 +1,95 @@
+[gd_scene load_steps=9 format=3 uid="uid://bqx523hj5ajc6"]
+
+[ext_resource type="Script" path="res://Menus/game_over_menu.gd" id="1_udjml"]
+[ext_resource type="Texture2D" uid="uid://88k6ia0bfj1t" path="res://Assets/Background/PinballBackground.PNG" id="2_ftdno"]
+[ext_resource type="FontFile" uid="uid://m1k5qjooih3p" path="res://Assets/Xirod.otf" id="3_3yutw"]
+[ext_resource type="StyleBox" path="res://Assets/ButtonResources/focus.tres" id="4_uluwk"]
+[ext_resource type="StyleBox" path="res://Assets/ButtonResources/hover_pressed.tres" id="5_mqa7e"]
+[ext_resource type="StyleBox" path="res://Assets/ButtonResources/hover.tres" id="6_0jf1j"]
+[ext_resource type="StyleBox" path="res://Assets/ButtonResources/pressed.tres" id="7_mm7ev"]
+[ext_resource type="StyleBox" path="res://Assets/ButtonResources/normal.tres" id="8_5np4w"]
+
+[node name="GameOverMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_udjml")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_ftdno")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = 48.0
+offset_right = 20.0
+offset_bottom = 71.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("3_3yutw")
+theme_override_font_sizes/font_size = 48
+text = "Game Over"
+
+[node name="Description" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -18.5
+offset_right = 20.0
+offset_bottom = 18.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_3yutw")
+theme_override_font_sizes/font_size = 30
+text = "You try to fend off the oncoming goons but you
+were no match. The goons caught up and took
+out the trucks wheels causing you to come to a halt.
+
+It was over, Draven catches up and looks as you plead
+for your safety. Draven takes back the parts and throws
+you and the others into his jail."
+horizontal_alignment = 1
+
+[node name="ReturnButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 64.0
+offset_top = -120.0
+offset_right = 320.0
+offset_bottom = -48.0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("3_3yutw")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = ExtResource("4_uluwk")
+theme_override_styles/hover_pressed_mirrored = ExtResource("5_mqa7e")
+theme_override_styles/hover = ExtResource("6_0jf1j")
+theme_override_styles/pressed = ExtResource("7_mm7ev")
+theme_override_styles/normal = ExtResource("8_5np4w")
+text = "Return"
+
+[connection signal="pressed" from="ReturnButton" to="." method="_on_return_button_pressed"]

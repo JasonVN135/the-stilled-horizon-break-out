@@ -1,0 +1,157 @@
+[gd_scene load_steps=11 format=3 uid="uid://dwplx88bkrbsx"]
+
+[ext_resource type="Script" path="res://Menus/tutorial_page.gd" id="1_2eyun"]
+[ext_resource type="Texture2D" uid="uid://bwgxdffqnds6d" path="res://Assets/Background/KeysTutorial.PNG" id="1_41dau"]
+[ext_resource type="FontFile" uid="uid://m1k5qjooih3p" path="res://Assets/Xirod.otf" id="2_wfqax"]
+[ext_resource type="StyleBox" path="res://Assets/ButtonResources/focus.tres" id="3_fgu7y"]
+[ext_resource type="StyleBox" path="res://Assets/ButtonResources/hover_pressed.tres" id="4_25by7"]
+[ext_resource type="StyleBox" path="res://Assets/ButtonResources/hover.tres" id="5_cxhdv"]
+[ext_resource type="StyleBox" path="res://Assets/ButtonResources/normal.tres" id="6_fhh3n"]
+
+[sub_resource type="Animation" id="Animation_rwwnp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_02yyy"]
+resource_name = "blur"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gxdwc"]
+_data = {
+"RESET": SubResource("Animation_rwwnp"),
+"blur": SubResource("Animation_02yyy")
+}
+
+[node name="TutorialPage" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2eyun")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_41dau")
+
+[node name="HowToPlay" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -243.5
+offset_top = 64.0
+offset_right = 243.5
+offset_bottom = 123.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_wfqax")
+theme_override_font_sizes/font_size = 48
+text = "How To Play"
+horizontal_alignment = 1
+
+[node name="Play" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -320.0
+offset_top = -120.0
+offset_right = -64.0
+offset_bottom = -48.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_wfqax")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/focus = ExtResource("3_fgu7y")
+theme_override_styles/hover_pressed_mirrored = ExtResource("4_25by7")
+theme_override_styles/hover = ExtResource("5_cxhdv")
+theme_override_styles/normal = ExtResource("6_fhh3n")
+text = "Play"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_gxdwc")
+}
+
+[node name="Wings" type="Label" parent="."]
+layout_mode = 0
+offset_left = 216.0
+offset_top = 240.0
+offset_right = 486.0
+offset_bottom = 277.0
+theme_override_fonts/font = ExtResource("2_wfqax")
+theme_override_font_sizes/font_size = 30
+text = "Flap Wings"
+
+[node name="Powerup" type="Label" parent="."]
+layout_mode = 0
+offset_left = 544.0
+offset_top = 240.0
+offset_right = 777.0
+offset_bottom = 277.0
+theme_override_fonts/font = ExtResource("2_wfqax")
+theme_override_font_sizes/font_size = 30
+text = "Power Up
+"
+
+[node name="Shoot" type="Label" parent="."]
+layout_mode = 0
+offset_left = 752.0
+offset_top = 920.0
+offset_right = 1035.0
+offset_bottom = 957.0
+theme_override_fonts/font = ExtResource("2_wfqax")
+theme_override_font_sizes/font_size = 30
+text = "Shoot Ball"
+
+[node name="Truck" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1392.0
+offset_top = 480.0
+offset_right = 1702.0
+offset_bottom = 517.0
+theme_override_fonts/font = ExtResource("2_wfqax")
+theme_override_font_sizes/font_size = 30
+text = "Steer Truck
+"
+
+[connection signal="pressed" from="Play" to="." method="_on_play_pressed"]

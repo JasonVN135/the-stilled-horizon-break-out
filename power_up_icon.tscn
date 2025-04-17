@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://cx3c7pp5w45i0"]
+
+[ext_resource type="Script" path="res://power_up_icon.gd" id="1_orwe6"]
+[ext_resource type="Texture2D" uid="uid://dy8da8wwvujd1" path="res://Assets/Background/WhiteBackground.png" id="3_sqogu"]
+
+[node name="PowerUpIcon" type="TextureRect"]
+offset_right = 248.0
+offset_bottom = 250.0
+script = ExtResource("1_orwe6")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+layout_mode = 0
+offset_right = 250.0
+offset_bottom = 250.0
+max_value = 10.0
+fill_mode = 2
+texture_progress = ExtResource("3_sqogu")
+tint_progress = Color(0, 0, 0, 0.521569)

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://c3ef1jqc6y4xk"]
+
+[ext_resource type="Script" path="res://Assets/random_sprite_2d.gd" id="2_3cpkq"]
+
+[node name="RandomSprite2D" type="Sprite2D"]
+region_enabled = true
+region_rect = Rect2(0, 0, 83, 400)
+script = ExtResource("2_3cpkq")

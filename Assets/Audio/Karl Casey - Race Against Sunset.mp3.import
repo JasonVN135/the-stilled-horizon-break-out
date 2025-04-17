@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cyb5ckhbv588v"
+path="res://.godot/imported/Karl Casey - Race Against Sunset.mp3-4b72472da93f7b8ebce81f3a97f8ad51.mp3str"
+
+[deps]
+
+source_file="res://Assets/Audio/Karl Casey - Race Against Sunset.mp3"
+dest_files=["res://.godot/imported/Karl Casey - Race Against Sunset.mp3-4b72472da93f7b8ebce81f3a97f8ad51.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
